@@ -127,6 +127,3 @@ dev-dependencies = [
     "pre-commit>=3.5.0",
     "ruff>=0.8.0",
 ]
-
-[tool.uv.sources]
-ebird-api = { workspace = true }
