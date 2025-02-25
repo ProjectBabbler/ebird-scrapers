@@ -1,7 +1,3 @@
-[![Build Status](https://travis-ci.org/ProjectBabbler/ebird-scrapers.svg?branch=master)](https://travis-ci.org/ProjectBabbler/ebird-scrapers)
-[![PyPI version](https://badge.fury.io/py/ebird-scrapers.svg)](https://badge.fury.io/py/ebird-scrapers)
-[![Supported Python Versions](https://img.shields.io/pypi/pyversions/ebird-scrapers.svg)](https://img.shields.io/pypi/pyversions/ebird-scrapers)
-
 # eBird Scrapers
 
 Although eBird has an API, not all the information from the database is
