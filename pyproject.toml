@@ -27,8 +27,8 @@ classifiers = [
 description = 'Scrapers for pages on the eBird web site'
 keywords = ["eBird", "web", "scraper"]
 license = {text = "MIT License"}
-name = "ebird-pages"
-readme = "README.md"
+name = "ebird-scrapers"
+readme = "README.rst"
 requires-python = ">= 3.8"
 version = "0.2.0"
 dependencies = [
@@ -38,9 +38,9 @@ dependencies = [
 ]
 
 [project.urls]
-Repository = "https://github.com/ProjectBabbler/ebird-pages.git"
-Issues = "https://github.com/ProjectBabbler/ebird-pages/issues"
-Changelog = "https://github.com/ProjectBabbler/ebird-pages/blob/master/CHANGELOG.md"
+Repository = "https://github.com/ProjectBabbler/ebird-scrapers.git"
+Issues = "https://github.com/ProjectBabbler/ebird-scrapers/issues"
+Changelog = "https://github.com/ProjectBabbler/ebird-scrapers/blob/master/CHANGELOG.md"
 
 [tool.bumpversion]
 current_version = "0.2.0"
@@ -57,7 +57,7 @@ message = "New version: {current_version} → {new_version}"
 commit_args = ""
 
 [[tool.bumpversion.files]]
-filename = "src/ebird/pages/__init__.py"
+filename = "src/ebird/scrapers/__init__.py"
 search = '__version__ = "{current_version}"'
 replace = '__version__ = "{new_version}"'
 

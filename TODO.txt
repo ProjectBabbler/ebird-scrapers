@@ -1,1 +1,0 @@
-# TODO Add utility to convert checklist to a list of observations with same keys as the eBird API.

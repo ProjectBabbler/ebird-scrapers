@@ -2,7 +2,7 @@ import time
 
 import pytest
 
-from ebird.pages import get_checklist, get_recent_checklists
+from ebird.scrapers import get_checklist, get_recent_checklists
 
 
 def get_identifiers():

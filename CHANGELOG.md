@@ -5,6 +5,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 This project adheres to [PEP440](https://www.python.org/dev/peps/pep-0440/)
 and by implication, [Semantic Versioning](http://semver.org/).
 
+## [Unreleased]
+- Renamed the package to ebird.scrapers. ebird-pages is used for another project.
+
 ## [0.2.0] - 2024-10-23
 ### Added
 - Added get_recent_checklists to scrape the "Recent Checklists" page
