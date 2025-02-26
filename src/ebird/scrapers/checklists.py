@@ -48,6 +48,7 @@ def _get_checklist(root):
         "identifier": _get_identifier(root),
         "date": _get_date(root),
         "observer": _get_observer(root),
+        "participants": _get_participants(root),
         "protocol": _get_protocol(root),
         "location": _get_location(root),
         "entries": _get_entries(root),
@@ -393,6 +394,28 @@ def _get_observer(node):
         "identifier": identifier,
         "name": name,
     }
+
+
+def _get_participants(node):
+    results = []
+    participants = node.findAll("li", attrs={"data-participant-userid": True})
+    for sub_node in participants:
+        results.append(_get_participant(sub_node))
+    return results
+
+
+def _get_participant(node):
+    identifier = node["data-participant-userid"].strip()
+    name = node.find(
+        "span", attrs={"data-participant-userdisplayname": True}
+    ).text.strip()
+    participant = {
+        "identifier": identifier,
+        "name": name,
+    }
+    if link := node.find("a", attrs={"data-ga-category": "checklist"}):
+        participant["checklist"] = "https://ebird.org" + link["href"].strip()
+    return participant
 
 
 def _get_comment(root):

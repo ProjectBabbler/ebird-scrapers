@@ -10,6 +10,7 @@ and by implication, [Semantic Versioning](http://semver.org/).
 ------------
 - Renamed the package to ebird.scrapers. ebird-pages is used for another project.
 - Updated get_checklist to return the checklist owner.
+- Updated get_checklist to return a list of other participants.
 
 [0.2.0] - 2024-10-23
 --------------------
