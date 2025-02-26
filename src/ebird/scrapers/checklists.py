@@ -19,7 +19,6 @@ def get_checklist(identifier):
         * scrape entry comments.
         * scrape age/sex table
         * scrape uploaded media
-        * scrape observers
         * update scraping of different protocols
 
     """
@@ -50,6 +49,7 @@ def _get_checklist(root):
         "observer": _get_observer(root),
         "participants": _get_participants(root),
         "protocol": _get_protocol(root),
+        "observer_count": _get_observer_count(root),
         "location": _get_location(root),
         "entries": _get_entries(root),
         "comment": _get_comment(root),
@@ -183,7 +183,6 @@ def _point_protocol(root):
     results = {
         "time": _get_time(root),
         "duration": _get_duration(root),
-        "party_size": _get_party_size(root),
     }
 
     if not results["time"]:
@@ -191,9 +190,6 @@ def _point_protocol(root):
 
     if not results["duration"]:
         raise ValueError("the duration field was not found")
-
-    if not results["party_size"]:
-        raise ValueError("the party size field was not found")
 
     return results
 
@@ -203,7 +199,6 @@ def _distance_protocol(root):
         "time": _get_time(root),
         "duration": _get_duration(root),
         "distance": _get_distance(root),
-        "party_size": _get_party_size(root),
     }
 
     if not results["time"]:
@@ -214,9 +209,6 @@ def _distance_protocol(root):
 
     if results["distance"] == (None, None):
         raise ValueError("the distance field was not found")
-
-    if not results["party_size"]:
-        raise ValueError("the party size field was not found")
 
     return results
 
@@ -250,10 +242,6 @@ def _historical_observations(node):
     if area != (None, None):
         results["area"] = area
 
-    party_size = _get_party_size(node)
-    if party_size:
-        results["party_size"] = party_size
-
     return results
 
 
@@ -263,7 +251,6 @@ def _area_protocol(include_area=True):
             "time": _get_time(node),
             "area": _get_area(node),
             "duration": _get_duration(node),
-            "party_size": _get_party_size(node),
         }
 
         if not results["time"]:
@@ -277,9 +264,6 @@ def _area_protocol(include_area=True):
 
         if results["duration"] is None:
             raise ValueError("the duration field was not found")
-
-        if not results["party_size"]:
-            raise ValueError("the party size field was not found")
 
         return results
 
@@ -340,12 +324,14 @@ def _get_duration(root):
     return duration
 
 
-def _get_party_size(root):
-    node = _find_page_sections(root)[2]
+def _get_observer_count(root):
+    count = None
+    section = _find_page_sections(root)[2]
     regex = re.compile(r"^Observers:.*")
-    node = node.find("div", title=regex)
-    node = node.find_all("span")[1]
-    return int(node.text.strip())
+    if node := section.find("span", title=regex):
+        if count_node := node.find("span", class_="Badge-label"):
+            count = int(count_node.text.strip())
+    return count
 
 
 def _get_distance(root):
