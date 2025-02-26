@@ -369,12 +369,12 @@ def _get_area(node):
         field = tag.parent.dd
         values = field.text.lower().split()
         area = float(values[0])
-        units = _get_area.units[values[1]]
+        units = _get_area_units[values[1]]
 
     return area, units
 
 
-_get_area.units = {
+_get_area_units = {
     "hectare(s)": "ha",
     "hectares": "ha",
     "ha": "ha",
