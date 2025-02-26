@@ -9,6 +9,7 @@ and by implication, [Semantic Versioning](http://semver.org/).
 [Unreleased]
 ------------
 - Renamed the package to ebird.scrapers. ebird-pages is used for another project.
+- Make 'observers' singular and move it from 'protocol' to the root level.
 
 [0.2.0] - 2024-10-23
 --------------------

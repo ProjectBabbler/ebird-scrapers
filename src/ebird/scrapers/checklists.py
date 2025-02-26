@@ -47,6 +47,7 @@ def _get_checklist(root):
     return {
         "identifier": _get_identifier(root),
         "date": _get_date(root),
+        "observer": _get_observer(root),
         "protocol": _get_protocol(root),
         "location": _get_location(root),
         "entries": _get_entries(root),
@@ -182,7 +183,6 @@ def _point_protocol(root):
         "time": _get_time(root),
         "duration": _get_duration(root),
         "party_size": _get_party_size(root),
-        "observers": _get_observers(root),
     }
 
     if not results["time"]:
@@ -203,7 +203,6 @@ def _distance_protocol(root):
         "duration": _get_duration(root),
         "distance": _get_distance(root),
         "party_size": _get_party_size(root),
-        "observers": _get_observers(root),
     }
 
     if not results["time"]:
@@ -222,9 +221,7 @@ def _distance_protocol(root):
 
 
 def _incidental_observations(node):
-    results = {
-        "observers": _get_observers(node),
-    }
+    results = {}
 
     time = _get_time(node)
     if time:
@@ -234,9 +231,7 @@ def _incidental_observations(node):
 
 
 def _historical_observations(node):
-    results = {
-        "observers": _get_observers(node),
-    }
+    results = {}
 
     time = _get_time(node)
     if time:
@@ -268,7 +263,6 @@ def _area_protocol(include_area=True):
             "area": _get_area(node),
             "duration": _get_duration(node),
             "party_size": _get_party_size(node),
-            "observers": _get_observers(node),
         }
 
         if not results["time"]:
@@ -389,7 +383,7 @@ _get_area.units = {
 }
 
 
-def _get_observers(node):
+def _get_observer(node):
     observers = []
 
     regex = re.compile(r"\s*[Oo]bservers[:]?\s*")
