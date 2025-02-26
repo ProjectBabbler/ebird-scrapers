@@ -384,15 +384,15 @@ _get_area.units = {
 
 
 def _get_observer(node):
-    observers = []
-
-    regex = re.compile(r"\s*[Oo]bservers[:]?\s*")
-    tag = node.find("dt", text=regex)
-    field = tag.parent.dd
-    name = " ".join(field.text.split())
-    observers.append(name)
-
-    return observers
+    observer = node.find("span", attrs={"data-participant-userid": True})
+    identifier = observer["data-participant-userid"].strip()
+    name = observer.find(
+        "span", attrs={"data-participant-userdisplayname": True}
+    ).text.strip()
+    return {
+        "identifier": identifier,
+        "name": name,
+    }
 
 
 def _get_comment(root):
