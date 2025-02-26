@@ -39,6 +39,71 @@ can download each checklist:
     for item in get_recent_checklists("US-MA"):
         checklist = get_checklist(item["identifier"])
 
+The data returned by ``get_checklist`` looks like this:
+
+.. code-block:: python
+
+    {
+      "identifier": "S928130259",
+      "date": datetime.datetime(2025, 2, 22, 10, 24),
+      "observer": {
+        "identifier": "USER000001",
+        "name": "Etta Lemon"
+      },
+      "participants": [
+        {
+          "identifier": "USER000002",
+          "name": "Catherine Hall",
+        }
+      ],
+      "protocol": {
+        "name": "Stationary"
+      },
+      "location": {
+        "name": "Turkey Hill Meadow Natural Area",
+        "identifier": "L11485440",
+        "subnational2": "Tompkins County",
+        "subnational2_code": "US-NY-109",
+        "subnational1": "New York",
+        "subnational1_code": "US-NY",
+        "country": "United States",
+        "country_code": "US",
+        "lat": "42.4410439",
+        "lon": "-76.430538"
+      },
+      "entries": [
+        {
+          "species": "Mourning Dove",
+          "count": 3
+        },
+        {
+          "species": "Red-tailed Hawk (borealis)",
+          "count": 1
+        },
+        {
+          "species": "European Starling",
+          "count": 75
+        },
+        {
+          "species": "Eastern Bluebird",
+          "count": 2
+        },
+        {
+          "species": "American Robin",
+          "count": 24
+        },
+        {
+          "species": "Red-winged Blackbird (Red-winged)",
+          "count": 13
+        },
+        {
+          "species": "Common Grackle (Bronzed)",
+          "count": 1
+        }
+      ],
+      "comment": "Partly cloudy39.9°F (4.4°C)Humidity: 93%Wind: SSW 4 mph (Gusts: 6.8 mph)Barometer: 29.7 in (1006 mb)Visibility: 9 miLast Update: 25 Feb 16:45\nSubmitted from eBird for iOS, version 3.2.16",
+      "complete": True
+    }
 
 Compatibility
 -------------
