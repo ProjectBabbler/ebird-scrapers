@@ -19,7 +19,6 @@ def get_checklist(identifier):
         * scrape entry comments.
         * scrape age/sex table
         * scrape uploaded media
-        * update scraping of different protocols
 
     """
     url = _get_url(identifier)
@@ -180,46 +179,69 @@ def _get_country_code(root):
     return url.split("/")[-1]
 
 
-def _point_protocol(root):
-    results = {
+def _point_protocol(name, root):
+    return {
+        "name": name,
         "duration": _get_duration(root),
     }
 
-    if not results["time"]:
-        raise ValueError("the time field was not found")
 
-    if not results["duration"]:
-        raise ValueError("the duration field was not found")
-
-    return results
+def _stationary_protocol(root):
+    return _point_protocol("Stationary", root)
 
 
-def _distance_protocol(root):
-    results = {
+def _night_protocol(root):
+    return _point_protocol("Nocturnal Flight Call Count", root)
+
+
+def _cwc_point_protocol(root):
+    return _point_protocol("CWC Point Count", root)
+
+
+def _proalas_protocol(root):
+    return _point_protocol("PROALAS", root)
+
+
+def _waterbird_protocol(root):
+    return _point_protocol("TNC California Waterbird Count", root)
+
+
+def _distance_protocol(name, root):
+    return {
+        "name": name,
         "duration": _get_duration(root),
         "distance": _get_distance(root),
     }
 
-    if not results["time"]:
-        raise ValueError("the time field was not found")
 
-    if results["duration"] is None:
-        raise ValueError("the duration field was not found")
+def _traveling_protocol(root):
+    return _distance_protocol("Traveling", root)
 
-    if results["distance"] == (None, None):
-        raise ValueError("the distance field was not found")
 
-    return results
+def _pelagic_protocol(root):
+    return _distance_protocol("eBird Pelagic Protocol", root)
+
+
+def _random_protocol(root):
+    return _distance_protocol("Random", root)
+
+
+def _blackbird_protocol(root):
+    return _distance_protocol("Rusty BlackbirdSpring Migration Blitz", root)
+
+
+def _pelican_protocol(root):
+    return _distance_protocol("California Brown Pelican Survey", root)
 
 
 def _incidental_observations(node):
-    results = {}
-
-    return results
+    return {"name": "Incidental"}
 
 
 def _historical_observations(node):
-    results = {}
+    results = {
+        "name": "Historical",
+    }
 
     duration = _get_duration(node)
     if duration:
@@ -236,58 +258,49 @@ def _historical_observations(node):
     return results
 
 
-def _area_protocol(include_area=True):
-    def _get_area_fields(node):
-        results = {
-            "area": _get_area(node),
-            "duration": _get_duration(node),
-        }
+def __area_protocol(name, root):
+    results = {
+        "name": name,
+        "area": _get_area(root),
+        "duration": _get_duration(root),
+    }
+    return results
 
-        if not results["time"]:
-            raise ValueError("the time field was not found")
 
-        if include_area:
-            if results["area"] == (None, None):
-                raise ValueError("the area field was not found")
-        else:
-            del results["area"]
+def _area_protocol(root):
+    return __area_protocol("Area", root)
 
-        if results["duration"] is None:
-            raise ValueError("the duration field was not found")
 
-        return results
+def _banding_protocol(root):
+    return __area_protocol("Banding", root)
 
-    return _get_area_fields
+
+def _cwc_area_protocol(root):
+    return __area_protocol("CWC Point Count", root)
 
 
 _protocols = {
-    "Stationary": _point_protocol,
-    "Traveling": _distance_protocol,
+    "Stationary": _stationary_protocol,
+    "Traveling": _traveling_protocol,
     "Incidental": _incidental_observations,
     "Historical": _historical_observations,
-    "Area": _area_protocol(),
-    "Banding": _area_protocol(include_area=False),
-    "eBird Pelagic Protocol": _distance_protocol,
-    "Nocturnal Flight Call Count": _point_protocol,
-    "Random": _distance_protocol,
-    "CWC Point Count": _point_protocol,
-    "CWC Area Count": _area_protocol(),
-    "PROALAS": _point_protocol,
-    "TNC California Waterbird Count": _point_protocol,
-    "Rusty BlackbirdSpring Migration Blitz": _distance_protocol,
-    "California Brown Pelican Survey": _distance_protocol,
+    "Area": _area_protocol,
+    "Banding": _banding_protocol,
+    "eBird Pelagic Protocol": _pelagic_protocol,
+    "Nocturnal Flight Call Count": _night_protocol,
+    "Random": _random_protocol,
+    "CWC Point Count": _cwc_point_protocol,
+    "CWC Area Count": _cwc_area_protocol,
+    "PROALAS": _proalas_protocol,
+    "TNC California Waterbird Count": _waterbird_protocol,
+    "Rusty BlackbirdSpring Migration Blitz": _blackbird_protocol,
+    "California Brown Pelican Survey": _pelican_protocol,
 }
 
 
 def _get_protocol(root):
-    results = {
-        "name": _get_protocol_name(root),
-    }
-
-    # TODO enable
-    # results.update(_protocols[results['name']](root))
-
-    return results
+    name = _get_protocol_name(root)
+    return _protocols[name](root)
 
 
 def _get_protocol_name(root):
@@ -303,14 +316,24 @@ def _get_time(root):
 
 
 def _get_duration(root):
-    node = _find_page_sections(root)[2]
+    duration = None
+    section = _find_page_sections(root)[2]
     regex = re.compile(r"^Duration:.*")
-    node = node.find("div", title=regex)
-    node = node.find_all("span")[1]
-    value = node.text.strip()
-    hours = value.split(",", 1)[0].strip().split(" ")[0]
-    minutes = value.split(",", 1)[1].strip().split(" ")[0]
-    duration = dt.timedelta(hours=int(hours), minutes=int(minutes))
+    if node := section.find("span", title=regex):
+        if duration_node := node.find("span", class_="Badge-label"):
+            value = duration_node.text.strip()
+            if "," in value:
+                hours_str, mins_str = value.split(",", 1)
+                hours = hours_str.strip().split(" ")[0].strip()
+                mins = mins_str.strip().split(" ")[0].strip()
+            elif "hr" in value:
+                hours = value.split(" ")[0].strip()
+                mins = "0"
+            else:
+                hours = "0"
+                mins = value.split(" ")[0].strip()
+            print(value, hours, mins)
+            duration = dt.timedelta(hours=int(hours), minutes=int(mins))
     return duration
 
 
