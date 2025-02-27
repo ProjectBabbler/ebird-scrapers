@@ -17,7 +17,6 @@ def get_checklist(identifier):
 
     ToDo:
         * scrape age/sex table
-        * scrape uploaded media
 
     """
     url = _get_url(identifier)
@@ -444,6 +443,7 @@ def _get_entry(node):
         "species": _get_species(node),
         "count": _get_count(node),
         "comments": _get_entry_comments(node),
+        "media": _get_media(node),
     }
 
 
@@ -472,6 +472,15 @@ def _get_entry_comments(node):
             for br in paragraph.find_all("br"):
                 br.replace_with("\n")
             result += " ".join(paragraph.text.split())
+    return result
+
+
+def _get_media(node):
+    result = []
+    if section := node.find("section", {"class": "Observation-media"}):
+        media = section.find_all("div", {"data-media-id": True})
+        for item in media:
+            result.append(item["data-media-id"])
     return result
 
 

@@ -17,6 +17,7 @@ and by implication, [Semantic Versioning](http://semver.org/).
 - Updated get_checklist to return distance in metres.
 - Updated get_checklist to return area in hectares.
 - Updated get_checklist to include observation comments.
+- Updated get_checklist to include any media identifiers.
 
 [0.2.0] - 2024-10-23
 --------------------

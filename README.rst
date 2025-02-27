@@ -76,6 +76,11 @@ The data returned by ``get_checklist`` looks like this:
           "species": "Mourning Dove",
           "count": 3,
           "comments": "Three individuals",
+          "media": [
+            "235672715",
+            "235672716",
+            "235672718"
+          ]
         },
         {
           "species": "Red-tailed Hawk (borealis)",
