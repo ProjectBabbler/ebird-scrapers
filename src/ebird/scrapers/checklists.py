@@ -352,9 +352,13 @@ def _get_distance(root):
     node = node.find("span", title=regex)
     node = node.find_all("span")[1]
     value = node.text.strip()
-    distance = value.split(" ")[0]
+    distance = float(value.split(" ")[0])
     units = value.split(" ")[1]
-    return float(distance), units
+    if units == "mi":
+        distance *= 1609
+    elif units == "km":
+        distance *= 1000
+    return int(distance)
 
 
 def _get_area(node):
