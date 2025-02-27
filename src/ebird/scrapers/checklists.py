@@ -363,7 +363,6 @@ def _get_distance(root):
 
 def _get_area(node):
     area = None
-    units = None
 
     regex = re.compile(r"\s*[Aa]rea[:]?\s*")
     tag = node.find("dt", text=regex)
@@ -373,8 +372,11 @@ def _get_area(node):
         values = field.text.lower().split()
         area = float(values[0])
         units = _get_area_units[values[1]]
+        if units == "acre":
+            area *= 0.404686
+            area = int(area * 1000) / 1000
 
-    return area, units
+    return area
 
 
 _get_area_units = {
