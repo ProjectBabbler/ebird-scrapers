@@ -13,6 +13,7 @@ and by implication, [Semantic Versioning](http://semver.org/).
 - Updated get_checklist to return a list of other participants.
 - Updated get_checklist to return the number of observers.
 - Updated get_checklist to use table for extracting protocol values.
+- Updated get_checklist to return duration in minutes.
 
 [0.2.0] - 2024-10-23
 --------------------

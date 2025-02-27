@@ -332,8 +332,7 @@ def _get_duration(root):
             else:
                 hours = "0"
                 mins = value.split(" ")[0].strip()
-            print(value, hours, mins)
-            duration = dt.timedelta(hours=int(hours), minutes=int(mins))
+            duration = int(hours) * 60 + int(mins)
     return duration
 
 
