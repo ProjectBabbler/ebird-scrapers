@@ -16,7 +16,6 @@ def get_checklist(identifier):
         (dict): all the fields extracted from the web page.
 
     ToDo:
-        * scrape entry comments.
         * scrape age/sex table
         * scrape uploaded media
 
@@ -444,6 +443,7 @@ def _get_entry(node):
     return {
         "species": _get_species(node),
         "count": _get_count(node),
+        "comments": _get_entry_comments(node),
     }
 
 
@@ -462,6 +462,17 @@ def _get_count(node):
     if value != "x":
         count = int(value)
     return count
+
+
+def _get_entry_comments(node):
+    result = ""
+    if comments := node.find("div", {"class": "Observation-comments"}):
+        paragraphs = comments.find_all("p")
+        for paragraph in paragraphs:
+            for br in paragraph.find_all("br"):
+                br.replace_with("\n")
+            result += " ".join(paragraph.text.split())
+    return result
 
 
 def _get_complete(root):
