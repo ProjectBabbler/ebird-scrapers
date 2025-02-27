@@ -46,6 +46,7 @@ def _get_checklist(root):
     return {
         "identifier": _get_identifier(root),
         "date": _get_date(root),
+        "time": _get_time(root),
         "observer": _get_observer(root),
         "participants": _get_participants(root),
         "protocol": _get_protocol(root),
@@ -181,7 +182,6 @@ def _get_country_code(root):
 
 def _point_protocol(root):
     results = {
-        "time": _get_time(root),
         "duration": _get_duration(root),
     }
 
@@ -196,7 +196,6 @@ def _point_protocol(root):
 
 def _distance_protocol(root):
     results = {
-        "time": _get_time(root),
         "duration": _get_duration(root),
         "distance": _get_distance(root),
     }
@@ -216,19 +215,11 @@ def _distance_protocol(root):
 def _incidental_observations(node):
     results = {}
 
-    time = _get_time(node)
-    if time:
-        results["time"] = time
-
     return results
 
 
 def _historical_observations(node):
     results = {}
-
-    time = _get_time(node)
-    if time:
-        results["time"] = time
 
     duration = _get_duration(node)
     if duration:
@@ -248,7 +239,6 @@ def _historical_observations(node):
 def _area_protocol(include_area=True):
     def _get_area_fields(node):
         results = {
-            "time": _get_time(node),
             "area": _get_area(node),
             "duration": _get_duration(node),
         }
