@@ -480,7 +480,7 @@ def _get_media(node):
     if section := node.find("section", {"class": "Observation-media"}):
         media = section.find_all("div", {"data-media-id": True})
         for item in media:
-            result.append(item["data-media-id"])
+            result.append({"identifier": item["data-media-id"]})
     return result
 
 

@@ -77,9 +77,9 @@ The data returned by ``get_checklist`` looks like this:
           "count": 3,
           "comments": "Three individuals",
           "media": [
-            "235672715",
-            "235672716",
-            "235672718"
+            {"identifier": "235672715"},
+            {"identifier": "235672716"},
+            {"identifier": "235672718"}
           ]
         },
         {
