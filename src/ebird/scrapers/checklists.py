@@ -450,6 +450,9 @@ def _get_entry(node):
     if media := _get_media(node):
         result["media"] = media
 
+    if breeding_code := _get_breeding_code(node):
+        result["breeding-code"] = breeding_code
+
     return result
 
 
@@ -487,6 +490,19 @@ def _get_media(node):
         media = section.find_all("div", {"data-media-id": True})
         for item in media:
             result.append({"identifier": item["data-media-id"]})
+    return result
+
+
+def _get_breeding_code(node):
+    result = {}
+    regex = re.compile(r"^Breeding.*")
+    if heading := node.find("h4", string=regex):
+        span = heading.find_next_sibling()
+        code, label = span.find("span").text.strip().split(".", 1)
+        return {
+            "code": code.strip(),
+            "label": label.replace("\xa0", " ").strip(),
+        }
     return result
 
 

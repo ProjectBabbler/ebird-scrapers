@@ -94,6 +94,10 @@ The data returned by ``get_checklist`` looks like this:
         {
           "species": "Eastern Bluebird",
           "count": 2,
+          "breeding-code": {
+            "code": 0,
+            "description": "Flyover (Observed)"
+          }
         },
         {
           "species": "American Robin",
