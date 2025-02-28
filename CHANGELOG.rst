@@ -19,6 +19,7 @@ and by implication, [Semantic Versioning](http://semver.org/).
 - Updated get_checklist to include observation comments.
 - Updated get_checklist to include any media identifiers.
 - Updated get_checklist to include any breeding codes.
+- Updated get_checklist to include any breakdown in the count by age and sex.
 
 [0.2.0] - 2024-10-23
 --------------------

@@ -24,7 +24,7 @@ database:
 
     from ebird.scrapers import get_checklist
 
-    data = get_checklist('S38429565')
+    data = get_checklist("S38429565")
 
 The function returns a dict with keys for the location, date, observers, etc.
 
@@ -106,6 +106,11 @@ The data returned by ``get_checklist`` looks like this:
         {
           "species": "Red-winged Blackbird (Red-winged)",
           "count": 13
+          "age-sex": {
+            "Age": ["Juvenile", "Immature", "Adult", "Age Unknown"],
+            "Male": [0, 0, 4, 2],
+            "Female": [0, 0, 0, 3],
+            "Sex Unknown": [0, 0, 0, 4]}}
         },
         {
           "species": "Common Grackle (Bronzed)",

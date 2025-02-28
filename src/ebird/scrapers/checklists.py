@@ -15,9 +15,6 @@ def get_checklist(identifier):
     Returns:
         (dict): all the fields extracted from the web page.
 
-    ToDo:
-        * scrape age/sex table
-
     """
     url = _get_url(identifier)
     content = _get_page(url)
@@ -453,6 +450,9 @@ def _get_entry(node):
     if breeding_code := _get_breeding_code(node):
         result["breeding-code"] = breeding_code
 
+    if age_sex := _get_age_sex(node):
+        result["age-sex"] = age_sex
+
     return result
 
 
@@ -503,6 +503,32 @@ def _get_breeding_code(node):
             "code": code.strip(),
             "label": label.replace("\xa0", " ").strip(),
         }
+    return result
+
+
+def _get_age_sex(node):
+    result = {}
+    regex = re.compile(r"^Age.*")
+    if heading := node.find("h4", string=regex):
+        table = heading.find_next_sibling().find("tbody")
+        for idx, row in enumerate(table.find_all("tr")):
+            if idx == 0:
+                values = []
+                for child in row.findChildren(recursive=False):
+                    values.append(child.text.strip())
+                key = values.pop(0)
+            else:
+                key = ""
+                values = []
+                for child in row.findChildren(recursive=False):
+                    value = child.text.strip()
+                    if child.name == "th":
+                        key = value
+                    if child.name == "td":
+                        value = int(value) if value else 0
+                        values.append(value)
+            result[key] = values
+
     return result
 
 
