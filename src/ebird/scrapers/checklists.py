@@ -439,12 +439,16 @@ def _get_entries(root):
 
 
 def _get_entry(node):
-    return {
+    result = {
         "species": _get_species(node),
         "count": _get_count(node),
-        "comments": _get_entry_comments(node),
         "media": _get_media(node),
     }
+
+    if comments := _get_entry_comments(node):
+        result["comments"] = comments
+
+    return result
 
 
 def _get_species(node):

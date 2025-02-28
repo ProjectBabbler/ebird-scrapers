@@ -85,7 +85,6 @@ The data returned by ``get_checklist`` looks like this:
         {
           "species": "Red-tailed Hawk (borealis)",
           "count": 1
-          "comments": "",
         },
         {
           "species": "European Starling",
@@ -95,22 +94,18 @@ The data returned by ``get_checklist`` looks like this:
         {
           "species": "Eastern Bluebird",
           "count": 2,
-          "comments": "",
         },
         {
           "species": "American Robin",
           "count": 24
-          "comments": "",
         },
         {
           "species": "Red-winged Blackbird (Red-winged)",
           "count": 13
-          "comments": "",
         },
         {
           "species": "Common Grackle (Bronzed)",
           "count": 1
-          "comments": "",
         }
       ],
       "comment": "Partly cloudy 39.9°F (4.4°C) Humidity: 93%Wind: SSW 4 mph (Gusts: 6.8 mph) Barometer: 29.7 in (1006 mb) Visibility: 9 miLast Update: 25 Feb 16:45\nSubmitted from eBird for iOS, version 3.2.16",
