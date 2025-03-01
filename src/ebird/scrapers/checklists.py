@@ -4,6 +4,20 @@ import re
 import requests
 from bs4 import BeautifulSoup
 
+_get_area_units = {
+    "hectare(s)": "ha",
+    "hectares": "ha",
+    "ha": "ha",
+    "acre(s)": "acre",
+    "acres": "acre",
+}
+
+ACRES_PER_HECTARE = 0.404686
+
+METRES_PER_MILE = 1609
+
+METRES_PER_KILOMETRE = 1000
+
 
 def get_checklist(identifier):
     """
@@ -352,9 +366,9 @@ def _get_distance(root):
     distance = float(value.split(" ")[0])
     units = value.split(" ")[1]
     if units == "mi":
-        distance *= 1609
+        distance *= METRES_PER_MILE
     elif units == "km":
-        distance *= 1000
+        distance *= METRES_PER_KILOMETRE
     return int(distance)
 
 
@@ -370,19 +384,10 @@ def _get_area(node):
         area = float(values[0])
         units = _get_area_units[values[1]]
         if units == "acre":
-            area *= 0.404686
+            area *= ACRES_PER_HECTARE
             area = int(area * 1000) / 1000
 
     return area
-
-
-_get_area_units = {
-    "hectare(s)": "ha",
-    "hectares": "ha",
-    "ha": "ha",
-    "acre(s)": "acre",
-    "acres": "acre",
-}
 
 
 def _get_observer(node):
