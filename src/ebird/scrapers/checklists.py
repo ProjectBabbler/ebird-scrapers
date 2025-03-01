@@ -241,16 +241,13 @@ def _historical_observations(node):
         "name": "Historical",
     }
 
-    duration = _get_duration(node)
-    if duration:
+    if duration := _get_duration(node):
         results["duration"] = duration
 
-    distance = _get_distance(node)
-    if distance != (None, None):
+    if distance := _get_distance(node):
         results["distance"] = distance
 
-    area = _get_area(node)
-    if area != (None, None):
+    if area := _get_area(node):
         results["area"] = area
 
     return results
