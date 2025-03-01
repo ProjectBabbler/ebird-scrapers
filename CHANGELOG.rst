@@ -20,6 +20,7 @@ and by implication, [Semantic Versioning](http://semver.org/).
 - Updated get_checklist to include any media identifiers.
 - Updated get_checklist to include any breeding codes.
 - Updated get_checklist to include any breakdown in the count by age and sex.
+- Split the PROALAS protocol into three - 2 point counts, 1 transect.
 
 [0.2.0] - 2024-10-23
 --------------------

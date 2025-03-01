@@ -193,8 +193,16 @@ def _cwc_point_protocol(root):
     return _point_protocol("CWC Point Count", root)
 
 
-def _proalas_protocol(root):
-    return _point_protocol("PROALAS", root)
+def _proalas_transect_protocol(root):
+    return _distance_protocol("PROALAS Mini-transect", root)
+
+
+def _proalas_2_protocol(root):
+    return _point_protocol("PROALAS Point Count (2 Bands)", root)
+
+
+def _proalas_3_protocol(root):
+    return _point_protocol("PROALAS Point Count (3 Bands)", root)
 
 
 def _waterbird_protocol(root):
@@ -286,7 +294,9 @@ _protocols = {
     "Random": _random_protocol,
     "CWC Point Count": _cwc_point_protocol,
     "CWC Area Count": _cwc_area_protocol,
-    "PROALAS": _proalas_protocol,
+    "PROALAS Point Count (2 Bands)": _proalas_2_protocol,
+    "PROALAS Mini-transect": _proalas_transect_protocol,
+    "PROALAS Point Count (3 Bands)": _proalas_3_protocol,
     "TNC California Waterbird Count": _waterbird_protocol,
     "Rusty BlackbirdSpring Migration Blitz": _blackbird_protocol,
     "California Brown Pelican Survey": _pelican_protocol,
