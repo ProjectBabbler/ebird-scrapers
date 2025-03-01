@@ -121,10 +121,13 @@ The data returned by ``get_checklist`` looks like this:
       "complete": True
     }
 
-Compatibility
--------------
-ebird-scrapers works with all currently supported versions of Python (3.8+).
+Project Information
+-------------------
+* Issues: https://github.com/ProjectBabbler/ebird-scrapers/issues
+* Repository: https://github.com/ProjectBabbler/ebird-scrapers
 
-License
--------
-eBird Scrapers is available under the terms of the [MIT](https://opensource.org/licenses/MIT) license.
+The app is tested on Python 3.8+.
+
+eBird Scrapers is released under the terms of the `MIT`_ license.
+
+.. _MIT: https://opensource.org/licenses/MIT
