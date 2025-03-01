@@ -6,7 +6,7 @@ from ebird.scrapers import get_checklist, get_recent_checklists
 
 
 def get_identifiers():
-    for checklist in get_recent_checklists("US-MA"):
+    for checklist in get_recent_checklists("US-NY-109"):
         yield checklist["identifier"]
 
 
