@@ -104,11 +104,6 @@ def _get_longitude(root):
     return _get_coordinates(root).split(",")[1]
 
 
-def _get_location_root(root):
-    node = _find_page_sections(root)[1]
-    return node.find("span", string="Location")
-
-
 def _get_location_name(root):
     node = _find_page_sections(root)[1]
     node = node.find("span", string="Location")
