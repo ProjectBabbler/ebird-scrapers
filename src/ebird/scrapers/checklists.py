@@ -469,8 +469,22 @@ def _get_entry(node):
 
 
 def _get_species(node):
+    return {
+        "common-name": _get_common_name(node),
+        "scientific-name": _get_scientific_name(node),
+    }
+
+
+def _get_common_name(node):
     node = node.find("div", {"class": "Observation-species"})
     tag = node.find("span", {"class": "Heading-main"})
+    value = " ".join(tag.text.split())
+    return value
+
+
+def _get_scientific_name(node):
+    node = node.find("div", {"class": "Observation-species"})
+    tag = node.find("span", {"class": "Heading-sub--sci"})
     value = " ".join(tag.text.split())
     return value
 

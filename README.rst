@@ -83,16 +83,25 @@ The data returned by ``get_checklist`` looks like this:
           ]
         },
         {
-          "species": "Red-tailed Hawk (borealis)",
+          "species": {
+            "common-name": "Red-tailed Hawk (borealis)",
+            "scientific-name": "Buteo jamaicensis borealis",
+          },
           "count": 1
         },
         {
-          "species": "European Starling",
-          "count": 75
+          "species": {
+            "common-name": "European Starling",
+            "scientific-name": "Sturnus vulgaris",
+          },
+          "count": 75.
           "comments": "Single flock.",
         },
         {
-          "species": "Eastern Bluebird",
+          "species": {
+            "common-name": "Eastern Bluebird",
+            "scientific-name": "Sialia sialis",
+          },
           "count": 2,
           "breeding-code": {
             "code": 0,
@@ -100,11 +109,17 @@ The data returned by ``get_checklist`` looks like this:
           }
         },
         {
-          "species": "American Robin",
+          "species": {
+            "common-name": "American Robin",
+            "scientific-name": "Turdus migratorius",
+          },
           "count": 24
         },
         {
-          "species": "Red-winged Blackbird (Red-winged)",
+          "species": {
+            "common-name": "Red-winged Blackbird (Red-winged)",
+            "scientific-name": "Agelaius phoeniceus",
+          },
           "count": 13
           "age-sex": {
             "Age": ["Juvenile", "Immature", "Adult", "Age Unknown"],
@@ -113,7 +128,10 @@ The data returned by ``get_checklist`` looks like this:
             "Sex Unknown": [0, 0, 0, 4]}}
         },
         {
-          "species": "Common Grackle (Bronzed)",
+          "species": {
+            "common-name": "Common Grackle (Bronzed)",
+            "scientific-name": "Quiscalus quiscula versicolor",
+          },
           "count": 1
         }
       ],
