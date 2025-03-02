@@ -505,9 +505,17 @@ def _get_breeding_code(node):
     regex = re.compile(r"^Breeding.*")
     if heading := node.find("h4", string=regex):
         span = heading.find_next_sibling()
-        code, label = span.find("span").text.strip().split(".", 1)
+        entry = span.find("span").text.strip()
+        # Depending on the portal used, the breeding code might be prefixed
+        # with an integer or something resembling the code used by eBird.
+        if re.match(r"^\d{1,2}\. .*", entry):
+            code, label = entry.split(".", 1)
+        elif re.match(r"[A-Z]{2} .*]", entry):
+            code, label = entry.split(" ", 1)
+        else:
+            code, label = None, entry
         return {
-            "code": code.strip(),
+            "code": code.strip() if code else None,
             "label": label.replace("\xa0", " ").strip(),
         }
     return result
