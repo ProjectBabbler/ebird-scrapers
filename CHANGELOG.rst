@@ -21,6 +21,7 @@ and by implication, [Semantic Versioning](http://semver.org/).
 - Updated get_checklist to include any breeding codes.
 - Updated get_checklist to include any breakdown in the count by age and sex.
 - Split the PROALAS protocol into three - 2 point counts, 1 transect.
+- Add a script that can be run via cron to check for web page changes.
 
 [0.2.0] - 2024-10-23
 --------------------
