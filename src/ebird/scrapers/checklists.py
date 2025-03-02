@@ -514,14 +514,14 @@ def _get_breeding_code(node):
         # Depending on the portal used, the breeding code might be prefixed
         # with an integer or something resembling the code used by eBird.
         if re.match(r"^\d{1,2}\. .*", entry):
-            code, label = entry.split(".", 1)
+            code, name = entry.split(".", 1)
         elif re.match(r"[A-Z]{2} .*]", entry):
-            code, label = entry.split(" ", 1)
+            code, name = entry.split(" ", 1)
         else:
-            code, label = None, entry
+            code, name = None, entry
         return {
             "code": code.strip() if code else None,
-            "label": label.replace("\xa0", " ").strip(),
+            "name": name.replace("\xa0", " ").strip(),
         }
     return result
 

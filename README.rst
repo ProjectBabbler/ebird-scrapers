@@ -96,7 +96,7 @@ The data returned by ``get_checklist`` looks like this:
           "count": 2,
           "breeding-code": {
             "code": 0,
-            "description": "Flyover (Observed)"
+            "name": "Flyover (Observed)"
           }
         },
         {
