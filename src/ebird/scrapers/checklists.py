@@ -156,16 +156,21 @@ def _get_subnational2_code(root):
 def _get_subnational1(root):
     node = _find_page_sections(root)[1]
     node = node.find("span", string="Region")
-    node = node.find_next_sibling("ul").find_all("li")[1]
+    # The country might only have one level of region
+    node = node.find_next_sibling("ul").find_all("li")[-1]
     return node.find("span").text.strip()
 
 
 def _get_subnational1_code(root):
     node = _find_page_sections(root)[1]
     node = node.find("span", string="Region")
-    node = node.find_next_sibling("ul").find_all("li")[1]
-    url = node.find("a")["href"]
-    return url.split("/")[-1]
+    # If the country only has one level of regionm then
+    # return an empty string for subnational2
+    regions = node.find_next_sibling("ul").find_all("li")
+    if len(regions) == 2:
+        return regions[0].find("span").text.strip()
+    else:
+        return ""
 
 
 def _get_country(root):

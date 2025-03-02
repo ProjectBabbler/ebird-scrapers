@@ -71,15 +71,17 @@ def _get_location(node):
 def _get_subnational1(node):
     node = node.find("div", {"class": "Chk-location"})
     node = node.find("span", {"class": "u-loc-ancestors"})
-    node = node.find_all("span")[1]
+    node = node.find_all("span")[-1]
     return node.text.strip()
 
 
 def _get_subnational2(node):
     node = node.find("div", {"class": "Chk-location"})
     node = node.find("span", {"class": "u-loc-ancestors"})
-    node = node.find_all("span")[0]
-    return node.text.strip()
+    items = node.find_all("span")
+    if len(items) == 2:
+        return items[0].text.strip()
+    return ""
 
 
 def _get_observer(node):
