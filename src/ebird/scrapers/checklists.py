@@ -515,7 +515,7 @@ def _get_breeding_code(node):
         # with an integer or something resembling the code used by eBird.
         if re.match(r"^\d{1,2}\. .*", entry):
             code, name = entry.split(".", 1)
-        elif re.match(r"[A-Z]{2} .*]", entry):
+        elif re.match(r"[A-Z][A-Z0-9] .*]", entry):
             code, name = entry.split(" ", 1)
         else:
             code, name = None, entry
