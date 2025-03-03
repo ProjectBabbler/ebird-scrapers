@@ -176,14 +176,14 @@ def _get_subnational1_code(root):
 def _get_country(root):
     node = _find_page_sections(root)[1]
     node = node.find("span", string="Region")
-    node = node.find_next_sibling("ul").find_all("li")[2]
+    node = node.find_next_sibling("ul").find_all("li")[-1]
     return node.find("span").text.strip()
 
 
 def _get_country_code(root):
     node = _find_page_sections(root)[1]
     node = node.find("span", string="Region")
-    node = node.find_next_sibling("ul").find_all("li")[2]
+    node = node.find_next_sibling("ul").find_all("li")[-1]
     url = node.find("a")["href"]
     return url.split("/")[-1]
 
