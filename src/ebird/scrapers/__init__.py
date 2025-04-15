@@ -2,7 +2,7 @@
 
 """A set of functions for scraping data from eBird web pages."""
 
-__version__ = "0.2.0"
+__version__ = "0.2.1"
 
 # Import all the functions that make up the public API.
 # noinspection PyUnresolvedReferences
