@@ -12,4 +12,4 @@ message: If you use this software, please cite it using the metadata from this f
 repository-artifact: "http://pypi.python.org/pypi/ebird-scrapers/"
 repository-code: "https://github.com/ProjectBabbler/ebird-scrapers"
 title: eBird Scrapers
-version: 0.2.1
+version: 0.2.2

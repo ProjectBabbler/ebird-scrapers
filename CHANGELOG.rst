@@ -8,6 +8,9 @@ and by implication, [Semantic Versioning](http://semver.org/).
 
 Latest
 ------
+
+0.2.2 (2025-04-15)
+------------------
 - Fixed parsing historical checklists, where distance travelled is not set.
 
 [0.2.1] - 2025-04-15
