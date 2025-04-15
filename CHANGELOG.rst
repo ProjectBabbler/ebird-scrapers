@@ -6,8 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 This project adheres to [PEP440](https://www.python.org/dev/peps/pep-0440/)
 and by implication, [Semantic Versioning](http://semver.org/).
 
-[Unreleased]
-------------
+Latest
+------
+
+[0.2.1] - 2025-04-15
+--------------------
 - Renamed the package to ebird.scrapers. ebird-pages is used for another project.
 - Updated get_checklist to return the checklist owner.
 - Updated get_checklist to return a list of other participants.
