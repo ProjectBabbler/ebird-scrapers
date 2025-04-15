@@ -206,6 +206,14 @@ def _stationary_protocol(root):
     return _point_protocol("Stationary", root)
 
 
+def _stationary_2_protocol(root):
+    return _point_protocol("Stationary (2 band, 25m)", root)
+
+
+def _stationary_directional_protocol(root):
+    return _point_protocol("Stationary (Directional)", root)
+
+
 def _night_protocol(root):
     return _point_protocol("Nocturnal Flight Call Count", root)
 
@@ -302,6 +310,10 @@ def _cwc_area_protocol(root):
 
 _protocols = {
     "Stationary": _stationary_protocol,
+    # Portugal CAC--Common Bird Survey
+    "Stationary (2 band, 25m)": _stationary_2_protocol,
+    # RAM Seabird Census
+    "Stationary (Directional)": _stationary_directional_protocol,
     "Traveling": _traveling_protocol,
     "Incidental": _incidental_observations,
     "Historical": _historical_observations,
