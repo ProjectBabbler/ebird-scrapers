@@ -385,6 +385,8 @@ def _get_distance(root):
     node = _find_page_sections(root)[2]
     regex = re.compile(r"^Distance:.*")
     node = node.find("span", title=regex)
+    if node is None:
+        return 0
     node = node.find_all("span")[1]
     value = node.text.strip()
     distance = float(value.split(" ")[0])
