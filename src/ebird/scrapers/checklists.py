@@ -100,7 +100,14 @@ def _get_identifier(root):
 def _get_date(root):
     node = _find_page_sections(root)[1]
     value = node.find("time")["datetime"]
-    return dt.datetime.strptime(value, "%Y-%m-%dT%H:%M")
+    if "T" in value:
+        return dt.datetime.strptime(value, "%Y-%m-%dT%H:%M").replace(
+            second=0, microsecond=0
+        )
+    else:
+        return (dt.datetime.strptime(value, "%Y-%m-%d")).replace(
+            hour=0, minute=0, second=0, microsecond=0
+        )
 
 
 def _get_coordinates(root):
