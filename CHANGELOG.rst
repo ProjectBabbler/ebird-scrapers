@@ -22,7 +22,10 @@ and by implication, [Semantic Versioning](http://semver.org/).
 - Updated get_checklist to include any breakdown in the count by age and sex.
 - Updated get_checklist to include common and scientific names for a species.
 - Split the PROALAS protocol into three - 2 point counts, 1 transect.
-- Add a script that can be run via cron to check for web page changes.
+- Added the RAM - Seabird census protocol
+- Added the Portugal CAC--Common Bird Survey protocol
+- Added a script that can be run via cron to check for web page changes.
+- Fixed parsing of checklist date, when time is not given.
 
 [0.2.0] - 2024-10-23
 --------------------
