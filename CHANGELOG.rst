@@ -1,20 +1,18 @@
-Change Log
-==========
-All notable changes to this project will be documented in this file.
+# Change Log
 
+All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 This project adheres to [PEP440](https://www.python.org/dev/peps/pep-0440/)
 and by implication, [Semantic Versioning](http://semver.org/).
 
-Latest
-------
+## Latest
 
-0.2.2 (2025-04-15)
-------------------
+## 0.2.2 (2025-04-15)
+
 - Fixed parsing historical checklists, where distance travelled is not set.
 
-[0.2.1] - 2025-04-15
---------------------
+## [0.2.1] - 2025-04-15
+
 - Renamed the package to ebird.scrapers. ebird-pages is used for another project.
 - Updated get_checklist to return the checklist owner.
 - Updated get_checklist to return a list of other participants.
@@ -34,12 +32,12 @@ Latest
 - Added a script that can be run via cron to check for web page changes.
 - Fixed parsing of checklist date, when time is not given.
 
-[0.2.0] - 2024-10-23
---------------------
+##  [0.2.0] - 2024-10-23
+
 - Added get_recent_checklists to scrape the "Recent Checklists" page
 - Updated get_checklist now works with the latest page layout
 
-[0.1] - 2017-08-21
-------------------
+## [0.1] - 2017-08-21
+
 - Added get_checklist for scraping the data from the view checklist page.
 - Added script so get_checklist can be called from the command line.

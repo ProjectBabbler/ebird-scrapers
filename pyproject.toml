@@ -65,16 +65,15 @@ search = '__version__ = "{current_version}"'
 replace = '__version__ = "{new_version}"'
 
 [[tool.bumpversion.files]]
-filename = "CHANGELOG.rst"
+filename = "CHANGELOG.md"
 search = """
-Latest
-------"""
+## Latest
+"""
 replace = """
-Latest
-------
+## Latest
 
-{new_version} ({now:%Y-%m-%d})
-------------------"""
+## {new_version}
+"""
 
 [[tool.bumpversion.files]]
 filename = "pyproject.toml"
